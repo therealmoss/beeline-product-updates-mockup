@@ -102,6 +102,8 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .ticker-track{
   display: flex;
+  flex: 0 0 auto;
+  width: max-content;
   align-items: center;
   gap: 28px;
   white-space: nowrap;
