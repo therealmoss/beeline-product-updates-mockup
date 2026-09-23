@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Updates — Beeline</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     Icon sprite (inline, reused via <use>)
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-bee" viewBox="0 0 32 32">
+      <path d="M16 6 L21 10 V16 L16 20 L11 16 V10 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-apple" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M16.365 1.43c0 1.14-.468 2.098-1.14 2.822-.756.84-1.998 1.482-2.982 1.398-.126-1.098.42-2.268 1.104-2.982.756-.84 2.058-1.47 3.018-1.238zM20.4 17.16c-.462 1.02-.678 1.476-1.266 2.376-.822 1.26-1.98 2.826-3.42 2.844-1.278.018-1.608-.834-3.342-.822-1.734.012-2.1.84-3.378.822-1.44-.018-2.532-1.428-3.354-2.688-2.298-3.51-2.538-7.626-1.122-9.816.99-1.554 2.556-2.466 4.026-2.466 1.5 0 2.442.828 3.684.828 1.2 0 1.938-.828 3.678-.828 1.314 0 2.706.714 3.696 1.95-3.246 1.782-2.718 6.42.798 7.8z"/>
+    </symbol>
+    <symbol id="icon-android" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.6 8.25a.9.9 0 0 0-.9.9v5.4a.9.9 0 1 0 1.8 0v-5.4a.9.9 0 0 0-.9-.9zm10.8 0a.9.9 0 0 0-.9.9v5.4a.9.9 0 1 0 1.8 0v-5.4a.9.9 0 0 0-.9-.9zM8.1 15.6c0 .5.4.9.9.9h.45v2.1a.9.9 0 1 0 1.8 0v-2.1h1.5v2.1a.9.9 0 1 0 1.8 0v-2.1H15a.9.9 0 0 0 .9-.9V9H8.1v6.6zm.63-9.9-.87-1.5a.3.3 0 1 1 .52-.3l.9 1.56A5.9 5.9 0 0 1 12 5.1c.84 0 1.63.14 2.34.36l.9-1.56a.3.3 0 1 1 .52.3l-.87 1.5A5.55 5.55 0 0 1 17.4 9H6.6a5.55 5.55 0 0 1 2.13-3.3zM10.35 7.2a.45.45 0 1 1 0-.9.45.45 0 0 1 0 .9zm3.3 0a.45.45 0 1 1 0-.9.45.45 0 0 1 0 .9z"/>
+    </symbol>
+    <symbol id="icon-web" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.94 9h-3.1a15.7 15.7 0 0 0-1.11-5.36A8.02 8.02 0 0 1 19.94 11zM12 4.06c.9 1.15 1.86 3.1 2.06 6.94H9.94c.2-3.84 1.16-5.79 2.06-6.94zM9.94 13h4.12c-.2 3.84-1.16 5.79-2.06 6.94-.9-1.15-1.86-3.1-2.06-6.94zM8.27 5.64A15.7 15.7 0 0 0 7.16 11h-3.1a8.02 8.02 0 0 1 4.21-5.36zM4.06 13h3.1c.12 2.07.5 3.88 1.11 5.36A8.02 8.02 0 0 1 4.06 13zm11.67 5.36c.61-1.48.99-3.29 1.11-5.36h3.1a8.02 8.02 0 0 1-4.21 5.36z"/>
+    </symbol>
+    <symbol id="icon-device-moto" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-device-velo" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-device-moto-og" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2.6 2.6"/>
+      <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-device-velo-og" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2.6 2.6"/>
+      <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 52 52">
+      <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.92)"/>
+      <path d="M21 16.5 L36 26 L21 35.5 Z" fill="#1A1A1A"/>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     Ticker — Dia-style masthead strip
+     ============================================================ -->
+<div class="ticker" id="ticker">
+  <div class="ticker-track" id="ticker-track"><!-- duplicated by script.js for seamless loop --></div>
+</div>
+
+<!-- ============================================================
+     Header
+     ============================================================ -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <img src="assets/logo/Beeline-Lockup-Black.svg" alt="Beeline" width="150" height="37">
+    </a>
+    <nav class="main-nav">
+      <a href="#">Products</a>
+      <a href="#">Beeline Plus</a>
+      <a href="#" class="active">Updates</a>
+      <a href="#">Support</a>
+      <a href="#">Blog</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu"><svg width="24" height="24"><use href="#icon-menu"/></svg></button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#">Products</a>
+    <a href="#">Beeline Plus</a>
+    <a href="#" class="active">Updates</a>
+    <a href="#">Support</a>
+    <a href="#">Blog</a>
+  </nav>
+</header>
+
+<!-- ============================================================
+     Hero
+     ============================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Beeline<br>Product Updates</h1>
+    <p>New features, shipped regularly. Most of them because you asked for them, all of them to help you explore further.</p>
+    <div class="hero-meta">
+      <span><strong id="stat-count">—</strong> updates shipped</span>
+      <span>·</span>
+      <span>Last release <strong id="stat-latest">—</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Controls: platform / device filters + month rail
+     ============================================================ -->
+<div class="controls">
+  <div class="wrap">
+    <div class="filter-row" id="filter-row">
+      <button class="chip is-active" data-filter-type="all" data-filter-value="all">All updates</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">App</span>
+      <button class="chip" data-filter-type="platform" data-filter-value="ios"><svg width="12" height="12"><use href="#icon-apple"/></svg>iOS</button>
+      <button class="chip" data-filter-type="platform" data-filter-value="android"><svg width="12" height="12"><use href="#icon-android"/></svg>Android</button>
+      <button class="chip" data-filter-type="platform" data-filter-value="web"><svg width="12" height="12"><use href="#icon-web"/></svg>Web</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">Devices</span>
+      <button class="chip chip--toggle" id="devices-toggle" aria-expanded="false" aria-controls="device-subrow">
+        <svg><use href="#icon-device-moto"/></svg>Devices
+        <span class="count" id="devices-count" style="display:none">0</span>
+        <svg class="chevron"><use href="#icon-chevron-down"/></svg>
+      </button>
+    </div>
+    <div class="device-subrow" id="device-subrow" hidden>
+      <button class="chip" data-filter-type="device" data-filter-value="moto2"><svg><use href="#icon-device-moto"/></svg>Moto II</button>
+      <button class="chip" data-filter-type="device" data-filter-value="velo2"><svg><use href="#icon-device-velo"/></svg>Velo 2</button>
+      <button class="chip" data-filter-type="device" data-filter-value="og-moto"><svg><use href="#icon-device-moto-og"/></svg>Original Moto</button>
+      <button class="chip" data-filter-type="device" data-filter-value="og-velo"><svg><use href="#icon-device-velo-og"/></svg>Original Velo</button>
+    </div>
+  </div>
+
+  <div class="wrap month-rail">
+    <div class="month-rail-track-wrap">
+      <div class="month-rail-track" id="month-track"><!-- populated by script.js --></div>
+      <button class="month-rail-arrow month-rail-arrow--prev" id="month-prev" aria-label="Earlier months"><svg><use href="#icon-chevron-left"/></svg></button>
+      <button class="month-rail-arrow month-rail-arrow--next" id="month-next" aria-label="Later months"><svg><use href="#icon-chevron-right"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Feed
+     ============================================================ -->
+<main class="feed wrap" id="feed">
+  <!-- month sections injected by script.js -->
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <img src="assets/logo/Beeline-Lockup-Black.svg" alt="Beeline" width="130" height="32">
+    </a>
+    <p>© 2026 Beeline. Purpose-built navigation for two wheels.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
