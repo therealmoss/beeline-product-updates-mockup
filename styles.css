@@ -107,7 +107,13 @@ button{ font-family: inherit; cursor: pointer; }
   align-items: center;
   gap: 28px;
   white-space: nowrap;
-  animation: ticker-scroll 32s linear infinite;
+  animation-name: ticker-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /* animation-duration and --ticker-shift are set from script.js once the
+     rendered width of one copy of the content is known — see renderTicker().
+     The content is repeated enough times to always cover at least two
+     screens' worth of width, so the loop never runs dry on wide viewports. */
 }
 .ticker:hover .ticker-track{ animation-play-state: paused; }
 .ticker-item{
@@ -142,7 +148,7 @@ button{ font-family: inherit; cursor: pointer; }
 
 @keyframes ticker-scroll{
   from{ transform: translateX(0); }
-  to{ transform: translateX(-50%); }
+  to{ transform: translateX(calc(-1 * var(--ticker-shift, 50%))); }
 }
 
 @media (prefers-reduced-motion: reduce){

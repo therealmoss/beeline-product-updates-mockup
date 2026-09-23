@@ -459,8 +459,30 @@ function renderTicker(){
     return parts.map(p => `<span class="ticker-item"${hidden ? ' aria-hidden="true"' : ''}>${p}<span class="rule">/</span></span>`).join('');
   }
 
+  const PX_PER_SECOND = 55; // constant scroll speed regardless of content/viewport width
+
+  // The loop only reads seamlessly if the track holds enough repeated
+  // copies to out-run the widest viewport it'll be shown at — on a very
+  // wide screen, two copies of a short ticker can be narrower than the
+  // screen itself, so the animation "runs out" of content before it can
+  // loop back around. We measure one copy's rendered width, then repeat
+  // it as many times as needed to comfortably cover 2x the window width.
   trackEl.innerHTML = copy(false) + copy(true);
+  const singleWidth = trackEl.children[parts.length].offsetLeft;
+  const copiesNeeded = Math.max(2, Math.ceil((window.innerWidth * 2) / singleWidth));
+
+  trackEl.innerHTML = Array.from({ length: copiesNeeded }, (_, i) => copy(i > 0)).join('');
+  trackEl.style.setProperty('--ticker-shift', `${singleWidth}px`);
+  trackEl.style.animationDuration = `${singleWidth / PX_PER_SECOND}s`;
 }
+
+window.addEventListener('resize', (()=>{
+  let raf = null;
+  return () => {
+    if (raf) return;
+    raf = requestAnimationFrame(()=>{ raf = null; renderTicker(); });
+  };
+})());
 
 // --- Mobile nav toggle -----------------------------------------------
 const navToggle = document.querySelector('.nav-toggle');
